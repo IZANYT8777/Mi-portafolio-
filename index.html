@@ -1,1 +1,263 @@
 
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>IZANYT8777 — Creador de Contenido & Aspirante a Staff</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg: #0F1115;
+    --surface: #161922;
+    --surface-2: #1C2029;
+    --line: #2A2F3A;
+    --text: #E7E5E0;
+    --text-muted: #8B909C;
+    --accent: #6FBF73;
+    --accent-dim: #559A58;
+    --ok: #E3B23C;
+  }
+  *{ box-sizing:border-box; margin:0; padding:0; }
+  html{ scroll-behavior: smooth; }
+  body{
+    background: var(--bg); color: var(--text);
+    font-family:'Inter', sans-serif; line-height:1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+  ::selection{ background: var(--accent); color:#0F1115; }
+  a{ color:inherit; text-decoration:none; }
+  .wrap{ max-width: 1080px; margin:0 auto; padding:0 32px; }
+  .mono{ font-family:'JetBrains Mono', monospace; }
+
+  nav{ position:sticky; top:0; z-index:20; background:rgba(15,17,21,0.85); backdrop-filter: blur(8px); border-bottom:1px solid var(--line); }
+  nav .wrap{ display:flex; align-items:center; justify-content:space-between; height:64px; }
+  .logo{ font-family:'JetBrains Mono', monospace; font-weight:600; }
+  .logo span{ color: var(--accent); }
+  .navlinks{ display:flex; gap:26px; font-size:0.9rem; color:var(--text-muted); }
+  .navlinks a:hover{ color:var(--text); }
+  .nav-cta{ font-family:'JetBrains Mono', monospace; font-size:0.82rem; border:1px solid var(--line); padding:8px 14px; border-radius:3px; }
+  .nav-cta:hover{ border-color: var(--accent); color: var(--accent); }
+
+  .hero{ padding: 88px 0 60px; }
+  .eyebrow{ font-family:'JetBrains Mono', monospace; color:var(--accent); font-size:0.85rem; margin-bottom:16px; display:flex; align-items:center; gap:8px; }
+  .eyebrow .dotpulse{ width:7px; height:7px; border-radius:50%; background: var(--ok); }
+  .hero h1{ font-family:'JetBrains Mono', monospace; font-weight:700; font-size: clamp(2.2rem, 5vw, 3.4rem); line-height:1.1; letter-spacing:-0.01em; max-width: 18ch; }
+  .hero h1 .role{ color: var(--accent); }
+  .hero p.lede{ margin-top:20px; color:var(--text-muted); font-size:1.05rem; max-width:56ch; }
+  .cta-row{ margin-top:30px; display:flex; gap:14px; flex-wrap:wrap; }
+  .btn{ font-family:'JetBrains Mono', monospace; font-size:0.88rem; padding:11px 20px; border-radius:3px; border:1px solid var(--line); }
+  .btn-primary{ background:var(--accent); color:#0B120C; border-color:var(--accent); font-weight:600; }
+  .btn-primary:hover{ background:var(--accent-dim); border-color:var(--accent-dim); }
+  .btn-ghost:hover{ border-color:var(--text-muted); }
+
+  .stats{ margin-top: 56px; display:grid; grid-template-columns: repeat(4, 1fr); border-top:1px solid var(--line); border-bottom:1px solid var(--line); }
+  .stat{ padding: 26px 20px; border-right:1px solid var(--line); }
+  .stat:last-child{ border-right:none; }
+  .stat b{ font-family:'JetBrains Mono', monospace; font-size:1.9rem; color: var(--text); display:block; }
+  .stat span{ font-size:0.8rem; color:var(--text-muted); }
+
+  section{ padding:76px 0; border-top:1px solid var(--line); }
+  .sec-head{ display:flex; align-items:baseline; gap:14px; margin-bottom:40px; }
+  .sec-num{ font-family:'JetBrains Mono', monospace; color:var(--accent); font-size:0.9rem; }
+  .sec-head h2{ font-family:'JetBrains Mono', monospace; font-size:1.5rem; font-weight:600; }
+
+  .about-grid{ display:grid; grid-template-columns: 1fr 1fr; gap:48px; align-items:start; }
+  .about-grid p{ color:var(--text-muted); margin-bottom:16px; max-width:52ch; }
+  .facts{ background:var(--surface); border:1px solid var(--line); border-radius:8px; padding:22px 24px; font-family:'JetBrains Mono', monospace; font-size:0.86rem; }
+  .facts .row{ display:flex; gap:10px; padding:7px 0; color:var(--text-muted); border-bottom:1px solid var(--line); }
+  .facts .row:last-child{ border-bottom:none; }
+  .facts .row::before{ content:">"; color:var(--ok); }
+  .facts .row b{ color:var(--text); font-weight:500; min-width: 120px; }
+
+  .skills{ display:grid; grid-template-columns: 1fr 1fr; gap: 22px 40px; }
+  .skill-row b{ font-size:0.92rem; }
+  .skill-row .pct{ float:right; font-family:'JetBrains Mono', monospace; color:var(--accent); font-size:0.82rem; }
+  .bar{ height:6px; background:var(--surface-2); border-radius:3px; margin-top:8px; overflow:hidden; }
+  .bar i{ display:block; height:100%; background:var(--accent); border-radius:3px; }
+
+  .services{ display:grid; grid-template-columns: repeat(3, 1fr); gap:1px; background:var(--line); border:1px solid var(--line); border-radius:8px; overflow:hidden; }
+  .service{ background:var(--surface); padding:26px 22px; }
+  .service .ico{ font-family:'JetBrains Mono', monospace; color:var(--accent); font-size:1.3rem; margin-bottom:14px; }
+  .service h3{ font-size:1rem; margin-bottom:8px; }
+  .service p{ color:var(--text-muted); font-size:0.88rem; }
+
+  .timeline{ position:relative; padding-left: 28px; }
+  .timeline::before{ content:""; position:absolute; left:5px; top:6px; bottom:6px; width:1px; background:var(--line); }
+  .tl-item{ position:relative; padding-bottom: 30px; }
+  .tl-item:last-child{ padding-bottom:0; }
+  .tl-item::before{ content:""; position:absolute; left:-28px; top:4px; width:11px; height:11px; border-radius:50%; background:var(--bg); border:2px solid var(--accent); }
+  .tl-item .when{ font-family:'JetBrains Mono', monospace; color:var(--accent); font-size:0.78rem; }
+  .tl-item h3{ margin-top:4px; font-size:1.02rem; }
+  .tl-item .org{ color:var(--text-muted); font-size:0.88rem; margin-bottom:6px; }
+  .tl-item p.desc{ color:var(--text-muted); font-size:0.92rem; max-width:60ch; }
+
+  .channel{ display:grid; grid-template-columns: 1.1fr 0.9fr; gap:40px; align-items:center; background:var(--surface); border:1px solid var(--line); border-radius:8px; padding:32px; }
+  .channel h3{ font-family:'JetBrains Mono', monospace; font-size:1.2rem; margin-bottom:10px; }
+  .channel p{ color:var(--text-muted); font-size:0.94rem; max-width:50ch; }
+  .channel .subs{ text-align:center; }
+  .channel .subs b{ font-family:'JetBrains Mono', monospace; font-size:2.6rem; color:var(--accent); display:block; }
+  .channel .subs span{ color:var(--text-muted); font-size:0.82rem; }
+  .channel .cta-row{ margin-top:18px; }
+
+  .contact-grid{ display:grid; grid-template-columns: 1.1fr 0.9fr; gap:48px; align-items:start; }
+  .contact-grid h2{ font-family:'JetBrains Mono', monospace; font-size: clamp(1.7rem, 3.6vw, 2.4rem); line-height:1.25; max-width:18ch; }
+  .contact-grid p{ color:var(--text-muted); margin-top:16px; max-width:46ch; }
+  .contact-cards{ display:flex; flex-direction:column; gap:1px; background:var(--line); border:1px solid var(--line); border-radius:8px; overflow:hidden; }
+  .ccard{ background:var(--surface); padding:18px 20px; display:flex; justify-content:space-between; align-items:center; }
+  .ccard .lbl{ font-family:'JetBrains Mono', monospace; color:var(--accent); font-size:0.78rem; display:block; margin-bottom:4px; }
+  .ccard .val{ font-size:0.94rem; }
+  .ccard:hover{ background: var(--surface-2); }
+
+  footer{ border-top:1px solid var(--line); padding:26px 0 40px; color:var(--text-muted); font-size:0.8rem; font-family:'JetBrains Mono', monospace; }
+
+  @media (max-width: 860px){
+    .about-grid, .contact-grid, .channel{ grid-template-columns:1fr; }
+    .stats{ grid-template-columns: repeat(2,1fr); }
+    .services{ grid-template-columns: repeat(2,1fr); }
+    .skills{ grid-template-columns: 1fr; }
+  }
+  @media (max-width: 560px){
+    .navlinks{ display:none; }
+    .stats{ grid-template-columns: repeat(2,1fr); }
+    .services{ grid-template-columns: 1fr; }
+  }
+  @media (prefers-reduced-motion: reduce){ html{ scroll-behavior:auto; } }
+  :focus-visible{ outline:2px solid var(--accent); outline-offset:2px; }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="wrap">
+    <div class="logo">izanyt<span>8777</span></div>
+    <div class="navlinks">
+      <a href="#about">Sobre mí</a>
+      <a href="#skills">Habilidades</a>
+      <a href="#experience">Experiencia</a>
+      <a href="#channel">Mi canal</a>
+      <a href="#offer">Qué aporto</a>
+    </div>
+    <a href="#contact" class="nav-cta">Contactar ↗</a>
+  </div>
+</nav>
+
+<header class="hero wrap">
+  <div class="eyebrow"><span class="dotpulse"></span>Buscando mi primera oportunidad como Staff</div>
+  <h1>IZANYT8777<br><span class="role">Creador de Contenido de Minecraft</span></h1>
+  <p class="lede">Pequeño creador de contenido con una comunidad en crecimiento. Busco formar parte del equipo de Staff en un servidor de Minecraft para aprender, aportar y crecer junto a un equipo experimentado.</p>
+  <div class="cta-row">
+    <a href="#channel" class="btn btn-primary">Ver mi canal</a>
+    <a href="#contact" class="btn btn-ghost">Contactar ↗</a>
+  </div>
+
+  <div class="stats">
+    <div class="stat"><b>163</b><span>Suscriptores en YouTube</span></div>
+    <div class="stat"><b>1</b><span>Modalidad dominada</span></div>
+    <div class="stat"><b>4</b><span>Comandos de moderación</span></div>
+    <div class="stat"><b>100%</b><span>Ganas de aprender</span></div>
+  </div>
+</header>
+
+<section id="about">
+  <div class="wrap">
+    <div class="sec-head"><span class="sec-num">01</span><h2>Sobre mí</h2></div>
+    <div class="about-grid">
+      <div>
+        <p>Soy un pequeño creador de contenido enfocado en Minecraft, con una comunidad en crecimiento de 163 suscriptores en YouTube. Fui Ex Staff (Mod) en InmortalCraft y actualmente soy Soporte en EON Network, y sigo en una etapa de aprendizaje como Staff, con profundo conocimiento del juego, muy buena actitud para trabajar en equipo y muchas ganas de capacitarme.</p>
+        <p>Tener un canal de YouTube me ha enseñado la importancia de mantener un ambiente sano y divertido para los jugadores, algo que quiero llevar a un servidor como parte del Staff.</p>
+      </div>
+      <div class="facts">
+        <div class="row"><b>usuario:</b> IZANYT8777</div>
+        <div class="row"><b>rol buscado:</b> Staff (Ayudante/Helper)</div>
+        <div class="row"><b>experiencia:</b> Ex Staff (Mod) en InmortalCraft, Soporte en EON Network</div>
+        <div class="row"><b>conocimiento:</b> Survival</div>
+        <div class="row"><b>disponibilidad:</b> semanal</div>
+        <div class="row"><b>discord:</b> Twitchizanyt8777</div>
+        <div class="row"><b>estado:</b> listo_para_aprender()</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="skills">
+  <div class="wrap">
+    <div class="sec-head"><span class="sec-num">02</span><h2>Fortalezas y habilidades</h2></div>
+    <div class="skills">
+      <div class="skill-row"><b>Creador de contenido</b><span class="pct">Manejo de comunidad</span><div class="bar"><i style="width:80%"></i></div></div>
+      <div class="skill-row"><b>Conocimiento de Minecraft</b><span class="pct">Survival</span><div class="bar"><i style="width:90%"></i></div></div>
+      <div class="skill-row"><b>Comandos de moderación</b><span class="pct">/ban /mute /kick /warn</span><div class="bar"><i style="width:65%"></i></div></div>
+      <div class="skill-row"><b>Habilidades blandas</b><span class="pct">Comunicación · paciencia</span><div class="bar"><i style="width:85%"></i></div></div>
+    </div>
+  </div>
+</section>
+
+<section id="experience">
+  <div class="wrap">
+    <div class="sec-head"><span class="sec-num">03</span><h2>Experiencia</h2></div>
+    <div class="timeline">
+      <div class="tl-item">
+        <div class="when">Actualidad</div>
+        <h3>Soporte</h3>
+        <div class="org">EON Network</div>
+        <p class="desc">Ayudando a jugadores y resolviendo dudas dentro de la comunidad.</p>
+      </div>
+      <div class="tl-item">
+        <div class="when">Anterior</div>
+        <h3>Ex Staff · Mod</h3>
+        <div class="org">InmortalCraft</div>
+        <p class="desc">Moderación del servidor y apoyo a la comunidad.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="channel">
+  <div class="wrap">
+    <div class="sec-head"><span class="sec-num">04</span><h2>Mi canal de YouTube</h2></div>
+    <div class="channel">
+      <div>
+        <h3>Contenido de Minecraft, hecho con cariño</h3>
+        <p>Tener un canal me ha enseñado a mantener un ambiente sano y divertido para los jugadores, y a moderar comentarios y transmisiones con paciencia y criterio.</p>
+        <div class="cta-row"><a href="https://youtube.com/@izanyt8777" class="btn btn-primary">Ver canal ↗</a></div>
+      </div>
+      <div class="subs">
+        <b>163</b>
+        <span>suscriptores y creciendo</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="offer">
+  <div class="wrap">
+    <div class="sec-head"><span class="sec-num">05</span><h2>Qué puedo aportar a tu servidor</h2></div>
+    <div class="services">
+      <div class="service"><div class="ico">◈</div><h3>Disponibilidad y compromiso</h3><p>Dispuesto a dedicar tiempo semanal para monitorear el chat, ayudar a jugadores nuevos y reportar errores.</p></div>
+      <div class="service"><div class="ico">⌘</div><h3>Hambre de aprender</h3><p>Busco un equipo de Staff experimentado que me guíe. No tengo miedo de empezar desde Ayudante/Helper para demostrar mi valor.</p></div>
+      <div class="service"><div class="ico">⚖</div><h3>Imparcialidad</h3><p>Entiendo que las reglas se aplican a todos por igual, sin importar si son amigos o usuarios comunes.</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="contact">
+  <div class="wrap contact-grid">
+    <div>
+      <h2>¿Buscas un Staff motivado? Hablemos.</h2>
+      <p>Si estás buscando alguien responsable, con ganas de aprender y comprometido con tu comunidad, contáctame.</p>
+    </div>
+    <div class="contact-cards">
+      <a href="#" class="ccard"><div><span class="lbl">◈ Discord</span><span class="val">Twitchizanyt8777</span></div></a>
+      <a href="https://youtube.com/@izanyt8777" class="ccard"><div><span class="lbl">▶ YouTube</span><span class="val">@izanyt8777</span></div></a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">© 2026 IZANYT8777. Mi portafolio 🙂</div>
+</footer>
+
+</body>
+</html>
